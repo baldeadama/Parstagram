@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import Parse
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -16,6 +16,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        // Initialize Parse
+        // Set applicationId and server based on the values in the Heroku settings.
+        Parse.initialize(
+            with: ParseClientConfiguration(block: { (configuration: ParseMutableClientConfiguration) -> Void in
+                configuration.applicationId = "Parstagram"
+                configuration.server = "https://apple-custard-37899.herokuapp.com/parse"
+            })
+        )
+        
+        if PFUser.current() != nil{
+            //load the storyboard you want to show. In this case, we are calling "Main.storyboard"
+            let main = UIStoryboard(name: "Main", bundle: nil)
+            //create a viewcontroller (blueprint) and intantiate one of our viewcontroller
+            let FeedViewController = main.instantiateViewController(withIdentifier: "FeedViewController")
+            //now we have an instant of that navigation view controller
+            //there is only one per application, that display the screen one at a time.
+            //rootViewController is the one that is being displayed.
+            window?.rootViewController = FeedViewController
+        }
+        
         return true
     }
 
