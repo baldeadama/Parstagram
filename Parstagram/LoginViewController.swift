@@ -27,12 +27,12 @@ class LoginViewController: UIViewController {
             
             if success {
                 self.performSegue(withIdentifier: "loginSegue", sender: nil)
-                self.usernameField.text = ""
-                self.passwordField.text = ""
+                //self.usernameField.text = ""
+                //self.passwordField.text = ""
             }
             else{
-                //print ("Wrong username/password")
-                print("Error:  \(String(describing: error?.localizedDescription))")
+                print ("Wrong username/password")
+                //print("Error:  \(String(describing: error?.localizedDescription))")
             }
         }
     }
@@ -44,8 +44,8 @@ class LoginViewController: UIViewController {
             if user != nil {
                 self.performSegue(withIdentifier: "loginSegue", sender: nil)
             }else{
-                //print ("Wrong username/password")
-                print("Error:  \(String(describing: error?.localizedDescription))")
+                print ("Wrong username/password")
+                //print("Error:  \(String(describing: error?.localizedDescription))")
             }
         }
         
